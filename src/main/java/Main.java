@@ -1,40 +1,54 @@
-import Task1.Person;
-import Task2.Lorry;
-import Task3.AreaCalculator;
-import Task3.Circle;
-import Task3.Square;
-import Task3.Triangle;
+import Homework3.AdditrionalTasks.CatchTeCycle;
+import Homework3.AdditrionalTasks.MyOneSideLinkedList;
+import Homework3.AdditrionalTasks.TurnTheList;
+import Homework3.Counter.Counter;
+import Homework3.Counter.CounterThread;
+import Homework3.PingPong;
 
 public class Main {
 
     public static void main(String[] args) {
 
 //        Task1
+        PingPong pingPong = new PingPong();
+        new Thread(pingPong::pong).start();
+        new Thread(pingPong::ping).start();
 
-        Person person = new Person.PersonBuilder()
-                .addFirstName("Ivan")
-                .addLastName("Ivanov")
-                .addMiddleName("Ivanovich")
-                .addAge(10)
-                .addCountry("Russia")
-                .addAddress("address")
-                .addGender("male")
-                .addPhone("123")
-                .build();
-        System.out.println(person);
 
-//        Task2
-        Lorry lorry = new Lorry();
-        lorry.move();
+////    Task2
+//
+    Counter counter = new Counter();
+        for(int i=0; i<200; i++) {
+        CounterThread ct = new CounterThread(counter);
+        ct.start();
+    }
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Counter:" + counter.getCounter());
+
+
 
 //        Task3
 
-        Circle circle = new Circle(5);
-        Square square = new Square(3);
-        Triangle triangle = new Triangle(2, 3);
-        System.out.println(AreaCalculator.calcArea(circle));
-        System.out.println(AreaCalculator.calcArea(square));
-        System.out.println(AreaCalculator.calcArea(triangle));
-    }
+        MyOneSideLinkedList<Integer> list = new MyOneSideLinkedList<>();
+        TurnTheList<Integer> turnTheList = new TurnTheList<>();
+        CatchTeCycle<Integer> catchTeCycle = new CatchTeCycle<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+        list.display();
+//        turnTheList.turn(list);
+//        list.display();
+        catchTeCycle.putTheCycle(4, list);
+        System.out.println(catchTeCycle.findCycle(list));
 
+
+
+    }
 }
