@@ -1,3 +1,5 @@
+import Homework5.Student;
+import Homework5.StudentDAO;
 import Task1.Person;
 import Task2.Lorry;
 import Task3.AreaCalculator;
@@ -8,33 +10,20 @@ import Task3.Triangle;
 public class Main {
 
     public static void main(String[] args) {
+        StudentDAO studentDAO = new StudentDAO();
+        Student student = new Student("New Student", 5);
+        Student changeStudent = new Student(4L,"Change student", 2);
+        Student wrongStudent = new Student(1001L,"Change student", 2);
 
-//        Task1
-
-        Person person = new Person.PersonBuilder()
-                .addFirstName("Ivan")
-                .addLastName("Ivanov")
-                .addMiddleName("Ivanovich")
-                .addAge(10)
-                .addCountry("Russia")
-                .addAddress("address")
-                .addGender("male")
-                .addPhone("123")
-                .build();
-        System.out.println(person);
-
-//        Task2
-        Lorry lorry = new Lorry();
-        lorry.move();
-
-//        Task3
-
-        Circle circle = new Circle(5);
-        Square square = new Square(3);
-        Triangle triangle = new Triangle(2, 3);
-        System.out.println(AreaCalculator.calcArea(circle));
-        System.out.println(AreaCalculator.calcArea(square));
-        System.out.println(AreaCalculator.calcArea(triangle));
+        studentDAO.fillTheTable(1000);
+        System.out.println(studentDAO.findById(5));
+        System.out.println(studentDAO.saveOrUpdate(student));
+        System.out.println(studentDAO.saveOrUpdate(changeStudent));
+        System.out.println(studentDAO.saveOrUpdate(wrongStudent));
+        System.out.println(studentDAO.findAll().toString());
+        studentDAO.deleteById(2);
+        studentDAO.deleteById(1001);
+        System.out.println(studentDAO.findAll().toString());
     }
 
 }

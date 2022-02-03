@@ -1,0 +1,12 @@
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.driver_class">org.postgresql.Driver</property>
+        <property name="connection.url">jdbc:postgresql://localhost:5432/hibernatedb?currentSchema=students</property>
+        <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="connection.username">postgres</property>
+        <property name="connection.password">Killthem86</property>
+        <property name="show_sql">true</property>
+        <property name="hbm2ddl.auto">create</property>
+        <mapping class="Homework5.Student"/>
+    </session-factory>
+</hibernate-configuration>
