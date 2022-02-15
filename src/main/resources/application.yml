@@ -1,0 +1,23 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /app
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/hibernatedb?currentSchema=students
+    username: postgres
+    password: Killthem86
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  thymeleaf:
+    check-template-location: true
+    servlet:
+      content-type: text/html
+    enabled: true
+    encoding: UTF-8
+    mode: HTML5
+    suffix: .html
+    prefix: classpath:/templates/
