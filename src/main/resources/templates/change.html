@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="UTF-8">
+      <link rel="stylesheet" th:href="@{/style.css}">
+  <title>Student</title>
+</head>
+<body>
+
+<table >
+    <tr>
+        <td>Student to change</td>
+    </tr>
+    <tr th:object = ${student}>
+        <td th:text="${student.id}"> </td>
+        <td th:text="${student.name}"> </td>
+        <td th:text="${student.age}"> </td>
+    </tr>
+</table>
+
+    <form  th:action="@{/change}" th:object="${student}" method="post">
+                <input th:field="${student.id}" type="hidden" name="id">
+                <input th:field="*{name}" type="text" name="name">
+                <input th:field="*{age}" type="text" name="age">
+                <input type="submit" value="Change student">
+    </form>
+
+
+
+
+
+</body>
+</html>

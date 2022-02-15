@@ -1,10 +1,10 @@
 server:
-  port: 8090
+  port: 8080
   servlet:
-    context-path: /shop
+    context-path: /app
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/hibernatedb?currentSchema=homework
+    url: jdbc:postgresql://localhost:5432/hibernatedb?currentSchema=students
     username: postgres
     password: Killthem86
   jpa:
@@ -12,3 +12,12 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: none
+  thymeleaf:
+    check-template-location: true
+    servlet:
+      content-type: text/html
+    enabled: true
+    encoding: UTF-8
+    mode: HTML5
+    suffix: .html
+    prefix: classpath:/templates/
