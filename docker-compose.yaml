@@ -1,0 +1,30 @@
+version: '3'
+services:
+  geek-frontend:
+    image: frontend:latest
+    restart: always
+    ports:
+      - 8081:80
+
+  geek-student-backend:
+    image: registry.heroku.com/geek-back-student/web:latest
+    ports:
+      - 8080
+    environment:
+      DB_HOST: "db"
+    restart: always
+    depends_on:
+      - db
+    command: bash -c "/apps/wait-for-service.sh db 5432 && /apps/entrypoint.sh"
+
+  db:
+        image: postgres
+        restart: always
+        environment:
+          POSTGRES_DB: hibernatedb
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: Killthem86
+        ports:
+        - 5432
+
+
